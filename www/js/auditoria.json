@@ -1,0 +1,68 @@
+[
+    {
+        "question": "Vários autores fazem uma classificação ou denominação formal sobre a natureza ou sobre os diversos tipos de auditorias existentes. Como são classificadas quanto a forma de abordagem, defina a correta:",
+        "answer": "Auditoria Horizontal e auditoria orientada"
+    }, {
+        "question": "A auditoria comumente usada para alcançar altos padrões de qualidade no desenvolvimento de software. Qual é o modelo mais famoso que representa a afirmativa?",
+        "answer": "CMM"
+    }, {
+        "question": "O que são ativos dentro dos fatores econômicos de uma organização?",
+        "answer": "Produto, Bens e informações"
+    }, {
+        "question": "Quais fatores geram ativos dentro de fatores econômicos de uma organização?",
+        "answer": "Capital, mão-de-obra e processos"
+    }, {
+        "question": "Que tipo de auditoria em ambientes informatizados determina a postura ou situação da corporação em relação à segurança?",
+        "answer": "Auditoria de segurança de informações"
+    }, {
+        "question": "Dado ao caráter altamente dinâmico que as atividades relacionadas com o processamento de informações adquiriram ao longo do tempo, como deve ser a política de segurança de informações aplicada para a auditoria?",
+        "answer": "Mais ampla e mais simples possível"
+    }, {
+        "question": "Qual tipo de segurança era empregado na época em que as empresas armazenavam informação apenas em papel?",
+        "answer": "Bastava trancar os documentos e restringir o acesso físico"
+    }, {
+        "question": "Quais são os conceitos básicos de auditoria?",
+        "answer": "Campo, Âmbito e área de verificação"
+    }, {
+        "question": "Conforme o conceito campo, quais são os seus aspectos relacionados a auditoria?",
+        "answer": "Objeto, período e natureza da auditoria"
+    }, {
+        "question": "O que são achados de auditoria?",
+        "answer": "São fatos importantes observados pelo auditor durante a execução dos trabalhos"
+    }, {
+        "question": "Em tempos de negócios e economia acirrada, o que mais agrega valor ao negócio?",
+        "answer": "Informações realizadas ao produto e serviço"
+    }, {
+        "question": "Em que fase são feitas as recomendações de auditoria?",
+        "answer": "Na fase da concepção do relatório"
+    }, {
+        "question": "Qual norma a ISO e a ABNT publicaram visando minimizar ameaças?",
+        "answer": "ISO 17799:1"
+    }, {
+        "question": "Vários autores fazem uma classificação ou denominação formal sobre a natureza ou sobre os diversos tipos de auditoria existentes. Baseando-se na auditoria interna, quais das alternativas se encaixam neste perfil?",
+        "answer": "Um de seus objetivos é reduzir a probabilidade de fraudes"
+    }, {
+        "question": "Avalia a política de segurança e os controle relacionados com aspectos de segurança, enfim, controles que influenciam o bom funcionamentos dos sistemas de toda a organização. Assinale a alternativa incorreta de acordo com o enunciado.",
+        "answer": "Controles de acesso lógico e remoto"
+    }, {
+        "question": "A auditoria de aplicativos compreende:",
+        "answer": "Controle sobre o desenvolvimento, entradas, processamento, saída de dados e conteúdos"
+    },
+    {
+        "question": "Segundo O’Brien, quatro filosofias éticas são básicas. Marque que condiz com uma delas.",
+        "answer": "Respeito pelas pessoas"
+    },
+    {
+        "question": "Em relação a ética no campo de novas tecnologias, assinale a alternativa correta.",
+        "answer": "Qualquer decisão ética possui implicitamente um conjunto de valores fundamentais"
+    }, {
+        "question": "São conceitos básicos de auditoria, exceto:",
+        "answer": "Escopo industrial"
+    }, {
+        "question": "O tipo de auditoria quanto ao órgão fiscalizador por uma empresa externa em conjunto com a equipe interna caracterizado pelo uso comum de recursos e comunicação recíproca dos resultados pode ser definida como:",
+        "answer": "Auditoria articulada"
+    }, {
+        "question": "A auditoria administrativa é:",
+        "answer": "Responsável pelo plano da organização, seus procedimentos e diretrizes"
+    }
+]
