@@ -37,7 +37,7 @@
       <ion-content class="has-header">
       <div class="card" ng-repeat="item in vm.result">
         <div class="item item-text-wrap">
-          {{ item.question }}
+          <div ng-bind-html="item.question"></div>
           <p>Resposta: {{ item.answer }}</p>
         </div>
       </div>

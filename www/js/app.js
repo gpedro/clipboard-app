@@ -39,7 +39,13 @@ angular.module('starter', ['ionic'])
     if (value !== old && value !== '') {
       QuestionService.find().then(function (result) {
         vm.result = result.data.filter(function (item) {
-          return item.question.toLowerCase().indexOf(value.toLowerCase()) != -1;
+          var match = item.question.toLowerCase().indexOf(value.toLowerCase());
+          var found =  match != -1;
+          if (found) {
+            item.question = item.question.substr(0, match) + '<span class="highlight">' + item.question.substr(match, value.length) +  '</span>' + item.question.substr(match + value.length) ;
+          }
+
+          return found;
         });
       });
     }
