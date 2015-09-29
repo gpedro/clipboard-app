@@ -29,19 +29,19 @@
           <i class="icon ion-ios-search placeholder-icon"></i>
           <input type="search" placeholder="Type a Question" ng-model="vm.question" ng-model-options="{ debounce: 1000 }">
         </label>
-        <button class="button button-clear">
-          Cancel
+        <button class="button button-clear" ng-click="vm.limpar()">
+          Limpar
         </button>
       </div>
 
+      <ion-content class="has-header">
       <div class="card" ng-repeat="item in vm.result">
         <div class="item item-text-wrap">
           {{ item.question }}
-        </div>
-        <div class="item item-divider">
-          Resposta: {{ item.answer }}
+          <p>Resposta: {{ item.answer }}</p>
         </div>
       </div>
+      </ion-content>
     </ion-pane>
   </body>
 </html>

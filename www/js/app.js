@@ -31,11 +31,15 @@ angular.module('starter', ['ionic'])
 .controller('MainController', ['$scope', 'QuestionService', function ($scope, QuestionService) {
   var vm = this;
   vm.question = '';
+  vm.limpar = function () {
+    vm.question = '';
+    vm.result = [];
+  };
   $scope.$watch('vm.question', function (value, old) {
-    if (value !== old) {
+    if (value !== old && value !== '') {
       QuestionService.find().then(function (result) {
         vm.result = result.data.filter(function (item) {
-          return item.question.indexOf(value) != -1;
+          return item.question.toLowerCase().indexOf(value.toLowerCase()) != -1;
         });
       });
     }
