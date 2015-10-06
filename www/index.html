@@ -25,9 +25,13 @@
 
     <ion-pane ng-controller="MainController as vm">
       <div class="bar bar-header item-input-inset">
-        <label class="item-input-wrapper">
+        <label class="item-input-wrapper item-select">
           <i class="icon ion-ios-search placeholder-icon"></i>
-          <input type="search" placeholder="Type a Question" ng-model="vm.question" ng-model-options="{ debounce: 1000 }">
+          <input type="search" placeholder="Type a Keyword" ng-model="vm.keyword" ng-model-options="{ debounce: 1000 }">
+          <select ng-model="vm.filter" ng-change="vm.search()">
+            <option value="question" selected>Pergunta</option>
+            <option value="answer">Resposta</option>
+          </select>
         </label>
         <button class="button button-clear" ng-click="vm.limpar()">
           Limpar
@@ -38,7 +42,7 @@
       <div class="card" ng-repeat="item in vm.result">
         <div class="item item-text-wrap">
           <div ng-bind-html="item.question"></div>
-          <p>Resposta: {{ item.answer }}</p>
+          <p>Resposta: <span ng-bind-html="item.answer"></span></p>
         </div>
       </div>
       </ion-content>

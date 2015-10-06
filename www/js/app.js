@@ -30,24 +30,36 @@ angular.module('starter', ['ionic'])
 }])
 .controller('MainController', ['$scope', 'QuestionService', function ($scope, QuestionService) {
   var vm = this;
-  vm.question = '';
+  vm.filter = 'question';
+  vm.keyword = '';
+
   vm.limpar = function () {
-    vm.question = '';
+    vm.keyword = '';
     vm.result = [];
   };
-  $scope.$watch('vm.question', function (value, old) {
-    if (value !== old && value !== '') {
-      QuestionService.find().then(function (result) {
-        vm.result = result.data.filter(function (item) {
-          var match = item.question.toLowerCase().indexOf(value.toLowerCase());
-          var found =  match != -1;
-          if (found) {
-            item.question = item.question.substr(0, match) + '<span class="highlight">' + item.question.substr(match, value.length) +  '</span>' + item.question.substr(match + value.length) ;
-          }
 
-          return found;
-        });
+  var search = function (value) {
+    QuestionService.find().then(function (result) {
+      vm.result = result.data.filter(function (item) {
+        var index = item[vm.filter];
+        var match = index.toLowerCase().indexOf(value.toLowerCase());
+        var found =  match != -1;
+        if (found) {
+          item[vm.filter] = index.substr(0, match) + '<span class="highlight">' + index.substr(match, value.length) +  '</span>' + index.substr(match + value.length) ;
+        }
+
+        return found;
       });
+    });
+  };
+
+  vm.search = function () {
+    search(vm.keyword);
+  };
+
+  $scope.$watch('vm.keyword', function (value, old) {
+    if (value !== old && value !== '') {
+      search(value);
     }
   });
 
