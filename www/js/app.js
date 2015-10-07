@@ -33,7 +33,7 @@ angular.module('starter', ['ionic'])
   vm.filter = 'question';
   vm.keyword = '';
 
-  vm.limpar = function () {
+  vm.clear = function () {
     vm.keyword = '';
     vm.result = [];
   };
@@ -41,11 +41,12 @@ angular.module('starter', ['ionic'])
   var search = function (value) {
     QuestionService.find().then(function (result) {
       vm.result = result.data.filter(function (item) {
-        var index = item[vm.filter];
+        var field = vm.filter;
+        var index = item[field];
         var match = index.toLowerCase().indexOf(value.toLowerCase());
         var found =  match != -1;
         if (found) {
-          item[vm.filter] = index.substr(0, match) + '<span class="highlight">' + index.substr(match, value.length) +  '</span>' + index.substr(match + value.length) ;
+          item[field] = index.substr(0, match) + '<span class="highlight">' + index.substr(match, value.length) +  '</span>' + index.substr(match + value.length) ;
         }
 
         return found;
@@ -57,6 +58,15 @@ angular.module('starter', ['ionic'])
     search(vm.keyword);
   };
 
+  vm.changeFilter = function(filter){
+    vm.filter = filter;
+    vm.search();
+  };
+
+  vm.isSelected = function(filter){
+    return vm.filter === filter;
+  };
+
   $scope.$watch('vm.keyword', function (value, old) {
     if (value !== old && value !== '') {
       search(value);
@@ -64,4 +74,3 @@ angular.module('starter', ['ionic'])
   });
 
 }]);
-//.controller('', function )
