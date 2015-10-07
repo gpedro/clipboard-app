@@ -19,13 +19,40 @@ angular.module('starter', ['ionic'])
       }
     });
   })
+  .filter('shuffle', function () {
+    // -> Fisher–Yates shuffle algorithm
+    var shuffleArray = function(array) {
+      var m = array.length, t, i;
+
+      // While there remain elements to shuffle
+      while (m) {
+        // Pick a remaining element…
+        i = Math.floor(Math.random() * m--);
+
+        // And swap it with the current element.
+        t = array[m];
+        array[m] = array[i];
+        array[i] = t;
+      }
+
+      return array;
+    };
+
+    return function (input) {
+      if (input instanceof Array) {
+        return shuffleArray(input);
+      }
+
+      return input;
+    };
+  })
   .factory('QuestionService', ['$http', function ($http) {
     function find() {
       return $http.get('js/auditoria.json');
     }
 
     function findByKeyword(keyword, field) {
-      return this.find().then(function (result) {
+      return find().then(function (result) {
         return result.data.filter(function (item) {
           var index = item[field];
           var match = index.toLowerCase().indexOf(keyword.toLowerCase());
