@@ -47,6 +47,15 @@
       </div>
 
       <ion-content class="has-header has-subheader">
+        <div class="card" ng-if="vm.result.length == 0 && !!vm.keyword">
+          <div class="item item-text-wrap text-center">
+            Nenhum resultado encontrado buscando por "{{ vm.keyword }}"
+            <br/>
+            <a class="button button-clear button-positive" ng-click="vm.clear()">
+              Limpar
+            </a>
+          </div>
+        </div>
         <div class="card" ng-repeat="item in vm.result">
           <div class="item item-text-wrap">
             <div ng-bind-html="item.question"></div>
