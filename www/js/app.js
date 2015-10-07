@@ -24,8 +24,23 @@ angular.module('starter', ['ionic'])
     return $http.get('js/auditoria.json');
   }
 
+  function findByKeyword(keyword, field){
+    return this.find().then(function(result){
+      return result.data.filter(function (item) {
+        var index = item[field];
+        var match = index.toLowerCase().indexOf(keyword.toLowerCase());
+        var found =  match != -1;
+        if (found) {
+          item[field] = index.substr(0, match) + '<span class="highlight">' + index.substr(match, keyword.length) +  '</span>' + index.substr(match + keyword.length) ;
+        }
+        return found;
+      });
+    });
+  }
+
   return {
-    find: find
+    find: find,
+    findByKeyword: findByKeyword
   };
 }])
 .controller('MainController', ['$scope', 'QuestionService', function ($scope, QuestionService) {
@@ -38,29 +53,17 @@ angular.module('starter', ['ionic'])
     vm.result = [];
   };
 
-  var search = function (value) {
-    QuestionService.find().then(function (result) {
-      vm.result = result.data.filter(function (item) {
-        var field = vm.filter;
-        var index = item[field];
-        var match = index.toLowerCase().indexOf(value.toLowerCase());
-        var found =  match != -1;
-        if (found) {
-          item[field] = index.substr(0, match) + '<span class="highlight">' + index.substr(match, value.length) +  '</span>' + index.substr(match + value.length) ;
-        }
-
-        return found;
-      });
+  var search = function () {
+    QuestionService.findByKeyword(vm.keyword, vm.filter).then(function (result) {
+      vm.result = result;
     });
   };
 
-  vm.search = function () {
-    search(vm.keyword);
-  };
+  vm.search = search;
 
   vm.changeFilter = function(filter){
     vm.filter = filter;
-    vm.search();
+    search();
   };
 
   vm.isSelected = function(filter){
@@ -69,7 +72,7 @@ angular.module('starter', ['ionic'])
 
   $scope.$watch('vm.keyword', function (value, old) {
     if (value !== old && value !== '') {
-      search(value);
+      search();
     }
   });
 
