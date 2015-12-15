@@ -1,0 +1,49 @@
+<ion-view view-title="{{ vm.discipline }}">
+  <ion-content>
+    <div class="item-input-inset">
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="search" placeholder="Type a Keyword" ng-model="vm.keyword" ng-model-options="{ debounce: 1000 }">
+      </label>
+      <button class="button button-clear button-positive" ng-click="vm.clear()">
+        Limpar
+      </button>
+    </div>
+
+    <div class="bar bar-subheader">
+      <div class="button-bar">
+        <a class="button" ng-class="{ 'button-positive': vm.isSelected('question') }"
+          ng-click="vm.changeFilter('question')">
+          Pergunta
+        </a>
+        <a class="button" ng-class="{ 'button-positive': vm.isSelected('answer') }"
+           ng-click="vm.changeFilter('answer')">
+          Resposta
+        </a>
+      </div>
+    </div>
+
+    <div class="padding">
+      <div class="card" ng-if="vm.result.length == 0 && !!vm.keyword">
+        <div class="item item-text-wrap text-center">
+          Nenhum resultado encontrado buscando por "{{ vm.keyword }}"
+          <br/>
+          <a class="button button-clear button-positive" ng-click="vm.clear()">
+            Limpar
+          </a>
+        </div>
+      </div>
+      <div class="card" ng-repeat="item in vm.result">
+        <div class="item item-text-wrap">
+          <div ng-bind-html="item.question"></div>
+          <div ng-if="item.hasOwnProperty('itens')" class="padding">
+            <ol class="roman-style padding">
+              <li ng-repeat="items in item.itens"><span ng-bind-html="items"></span></li>
+            </ol>
+          </div>
+          <p>Resposta: <span ng-bind-html="item.answer"></span></p>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

@@ -6,8 +6,37 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic'])
+  .config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider) {
 
-  .run(function ($ionicPlatform) {
+    // Default Route
+    $urlRouterProvider.otherwise('/');
+
+    $stateProvider.state('home', {
+      url: '/',
+      controller: 'DisciplineController as vm',
+      templateUrl: 'views/disciplines.html'
+    });
+
+    $stateProvider.state('questions', {
+      url: '/discipline/:index',
+      controller: 'QuestionsController as vm',
+      templateUrl: 'views/questions.html',
+      resolve: {
+        questions: ['DisciplineService', '$stateParams', function (DisciplineService, $stateParams) {
+          return DisciplineService.getQuestionsByIndex($stateParams.index).then(function (result) {
+            return result.data;
+          });
+        }],
+
+        discipline: ['DisciplineService', '$stateParams', function (DisciplineService, $stateParams) {
+          return DisciplineService.findByIndex($stateParams.index).then(function (result) {
+            return result.name;
+          });
+        }]
+      }
+    });
+  }])
+  .run(['$ionicPlatform', function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -18,7 +47,7 @@ angular.module('starter', ['ionic'])
         StatusBar.styleDefault();
       }
     });
-  })
+  }])
   .filter('shuffle', function () {
     // -> Fisher–Yates shuffle algorithm
     var shuffleArray = function(array) {
@@ -46,32 +75,44 @@ angular.module('starter', ['ionic'])
       return input;
     };
   })
-  .factory('QuestionService', ['$http', function ($http) {
-    function find() {
-      return $http.get('js/auditoria.json');
+  .factory('DisciplineService', ['$http', function ($http) {
+    function findAll() {
+      return $http.get('js/disciplines.json');
     }
 
-    function findByKeyword(keyword, field) {
-      return find().then(function (result) {
-        return result.data.filter(function (item) {
-          var index = item[field];
-          var match = index.toLowerCase().indexOf(keyword.toLowerCase());
-          var found = match != -1;
-          if (found) {
-            item[field] = index.substr(0, match) + '<span class="highlight">' + index.substr(match, keyword.length) + '</span>' + index.substr(match + keyword.length);
-          }
-          return found;
-        });
+    function findByIndex(index) {
+      return findAll().then(function (result) {
+        return result.data[index];
+      });
+    }
+
+    function getQuestionsByIndex(index) {
+      return findByIndex(index).then(function (result) {
+        return $http.get('js/' + result.data);
       });
     }
 
     return {
-      find: find,
-      findByKeyword: findByKeyword
+      findAll: findAll,
+      findByIndex: findByIndex,
+      getQuestionsByIndex: getQuestionsByIndex
     };
   }])
-  .controller('MainController', ['$scope', 'QuestionService', function ($scope, QuestionService) {
+  .controller('DisciplineController', ['DisciplineService', '$state', function (DisciplineService, $state) {
     var vm = this;
+
+    vm.showQuestions = function (index) {
+      $state.go('questions', { index: index });
+    };
+
+    DisciplineService.findAll().then(function (result) {
+      vm.disciplines = result.data;
+    });
+  }])
+  .controller('QuestionsController', ['questions', 'discipline', '$scope', function (questions, discipline, $scope) {
+    var vm = this;
+
+    vm.discipline = discipline;
     vm.filter = 'question';
     vm.keyword = '';
 
@@ -81,8 +122,28 @@ angular.module('starter', ['ionic'])
     };
 
     var search = function () {
-      QuestionService.findByKeyword(vm.keyword, vm.filter).then(function (result) {
-        vm.result = result;
+      var keyword = vm.keyword;
+      var questionsShadow = angular.copy(questions);
+      var field = vm.filter;
+      vm.result = questionsShadow.filter(function (item) {
+        var index = item[field];
+        var match = index.toLowerCase().indexOf(keyword.toLowerCase());
+        var found = match != -1;
+        if (found) {
+          item[field] = index.substr(0, match) + '<span class="highlight">' + index.substr(match, keyword.length) + '</span>' + index.substr(match + keyword.length);
+        }
+        if (field === 'question' && item.hasOwnProperty('itens')) {
+          var itens = item.itens;
+          itens.forEach(function (itemDesc, index) {
+            match = itemDesc.toLowerCase().indexOf(keyword.toLowerCase());
+            found = match != -1;
+            if (found) {
+              item.itens[index] = itemDesc.substr(0, match) + '<span class="highlight">' + itemDesc.substr(match, keyword.length) + '</span>' + itemDesc.substr(match + keyword.length);
+            }
+          });
+
+        }
+        return found;
       });
     };
 
@@ -102,5 +163,4 @@ angular.module('starter', ['ionic'])
         search();
       }
     });
-
   }]);

@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Segurança e Auditoria do Sistema",
+    "data": "data/auditoria.json"
+  },
+  {
+    "name": "Arquitetura Orientada a Serviços",
+    "data": "data/soa.json"
+  }
+]

@@ -1,0 +1,70 @@
+[
+    {
+        "question": "Quando que surgiu a Arquitetura Orientada a Serviços",
+        "answer": "No final da década de 90, com o propósito de flexibilizar as soluções de TI",
+        "answers": [
+          "No final da década 60, juntamente com a Engenharia de Software",
+          "No final da década de 50, durante a Segunda Geração da Computação, com o propósito de flexibilizar as soluções",
+          "Na década de 70, durante o início da época dos computadores pessoais",
+          "Nenhuma das alternativas"
+        ]
+    }, {
+        "question": "Assinale a alternativa que traz a definição de Serviços na visão da Arquitetura Orientada a Serviços",
+        "answer": "representação de uma funcionalidade do negócio, independente e sem estado, que aceita uma ou mais requisições e retorna uma ou mais respostas por meio de uma interface padronizada e bem definida.",
+        "answers": [
+          "representação total do negócio, com estado, que aceita uma ou mais requisições e retorna uma ou mais respostas por meio de uma interface padronizada e bem definida",
+          "representação de uma funcionalidade do negócio, independente e sem estado, que aceita apenas uma requisição e retorna apenas uma resposta por meio de uma interface padronizada e bem definida",
+          "Todas as alternativas representam a definição de Serviços",
+          "Nenhuma das alternativas"
+        ]
+    }, {
+        "question": "O que acontece entre o Provedor e o Consumidor no Ambiente do Negócio?",
+        "answer": "Interação",
+        "answers": [
+          "Compartilhamento",
+          "O provedor apenas disponibiliza o serviço sem interação com o consumidor",
+          "Desenvolvimento do Software",
+          "Nenhuma das Alternativas"
+        ]
+    }, {
+        "question": "Quais fatores geram ativos dentro de fatores econômicos de uma organização?",
+        "itens": [
+          "Não há propósito da implantação de um serviço",
+          "Os atores estão envolvidos na prestação e no consumo do serviço",
+          "As informações que são trocadas, são feitas apenas por uma das partes",
+          "Os processos apenas que são representados pelo serviço",
+          "Como Elemento Básicos também entram os recursos necessários para a execução do serviço"
+        ],
+        "answer": "Apenas a I, III e a IV estão incorretas",
+        "answers": [
+          "Apenas a I, II e V estão corretas",
+          "Apenas a I, III e V estão corretas",
+          "Todas os itens estão corretos",
+          "Nenhuma dos itens estão corretos"
+        ]
+    }, {
+        "question": "Qual a composição dos diferentes elementos relacionados ao negócio?",
+        "answer": "Entrada Saída, Objetivos, Transformação, Recursos e Sensores",
+        "answers": [
+          "Entrada, Saída, Compilação, Objetivos, Transformação",
+          "Entrada Saída, Objetivos, Projeção, Recursos e Sensores",
+          "Entrada Saída, Objetivos, Transformação, Processos e Sensores",
+          "Nenhuma das alternativas"
+        ]
+    }, {
+        "question": "Para a TI, podemos ter serviços distintos, mas devemos manter:",
+        "answer": "Todas as alternativas acima",
+        "answers": [
+            "Atomicidade da Operação",
+            "Consistência das Informaçõe",
+            "Isolamento e a independência necessários para a composição do serviço",
+            "Persistência dos resultados"
+        ]
+    }, {
+        "question": "Quais os tipos de Serviços Existentes?",
+        "answer": "Serviços gratuitos, Serviços pagos e serviços do governo"
+    }, {
+        "question": "Qual o Ciclo de Vida dos Serviços de TI?",
+        "answer": "Planejamento, Engajamento, Desenvolvimento, Entrega, Operação, Cobrança – tendo gerenciamento"
+    }
+]

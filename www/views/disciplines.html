@@ -1,0 +1,12 @@
+<ion-view view-title="Matérias">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-if="vm.disciplines.length === 0">
+        <p>Nenhuma matéria cadastrada :(</p>
+      </ion-item>
+      <ion-item ng-repeat="discipline in vm.disciplines" ng-click="vm.showQuestions($index)">
+        {{ $index + 1 }}. {{ discipline.name }}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
